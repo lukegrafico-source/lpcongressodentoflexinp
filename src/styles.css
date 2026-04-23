@@ -213,3 +213,14 @@
   }
   .pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
 }
+
+
+/* Esconder o badge do Lovable/GPT Engineer */
+div[data-radix-portal], 
+button[id*="lovable"], 
+#gpt-engineer-widget, 
+.lovable-badge {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
