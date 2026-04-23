@@ -8,16 +8,8 @@ import graficoDA from "@/assets/grafico-da.png";
 import graficoMesh from "@/assets/grafico-mesh.png";
 import logoSobrapi from "@/assets/logo-sobrapi.png";
 import bgTech from "@/assets/background.png";
-import {
-  Hexagon,
-  Layers,
-  Minimize2,
-  Zap,
-  MapPin,
-  CalendarDays,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import minascentroImg from "@/assets/minascentro.png";
+import { Aperture, MapPin, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
