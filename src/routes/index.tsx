@@ -8,16 +8,8 @@ import graficoDA from "@/assets/grafico-da.png";
 import graficoMesh from "@/assets/grafico-mesh.png";
 import logoSobrapi from "@/assets/logo-sobrapi.png";
 import bgTech from "@/assets/background.png";
-import {
-  Hexagon,
-  Layers,
-  Minimize2,
-  Zap,
-  MapPin,
-  CalendarDays,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import minascentroImg from "@/assets/minascentro.png";
+import { Aperture, MapPin, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -136,14 +128,27 @@ function Landing() {
       <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background/85 via-background/75 to-background" />
       <div className="fixed inset-0 -z-10 grid-pattern opacity-25" />
 
-      {/* Floating geometric accents — inspired by reference */}
+      {/* Geometric reference background — diamonds + light shines */}
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 opacity-70"
+        style={{
+          backgroundImage: "url(/bg-geo.png)",
+          backgroundSize: "120% auto",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat",
+          mixBlendMode: "screen",
+        }}
+      />
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="geo-accent" style={{ top: "-8%", left: "-6%", width: "420px", height: "420px" }} />
-        <div className="geo-accent" style={{ top: "30%", right: "-10%", width: "520px", height: "520px" }} />
-        <div className="geo-accent" style={{ bottom: "-10%", left: "20%", width: "380px", height: "380px" }} />
-        <div className="geo-shine" style={{ top: "10%", left: "18%", height: "260px", transform: "rotate(35deg)" }} />
-        <div className="geo-shine" style={{ top: "55%", right: "22%", height: "320px", transform: "rotate(35deg)" }} />
+        <div className="geo-diamond" style={{ top: "-6%", left: "-8%", width: "460px", height: "460px" }} />
+        <div className="geo-diamond" style={{ top: "32%", right: "-12%", width: "560px", height: "560px" }} />
+        <div className="geo-diamond" style={{ bottom: "-12%", left: "18%", width: "420px", height: "420px" }} />
+        <div className="geo-diamond" style={{ top: "62%", left: "-6%", width: "320px", height: "320px" }} />
+        <div className="geo-shine" style={{ top: "8%", left: "22%", height: "320px", transform: "rotate(35deg)" }} />
+        <div className="geo-shine" style={{ top: "48%", right: "18%", height: "380px", transform: "rotate(35deg)" }} />
+        <div className="geo-shine" style={{ bottom: "10%", left: "55%", height: "260px", transform: "rotate(35deg)" }} />
       </div>
+
 
       {/* NAV */}
       <header className="relative z-20">
@@ -230,15 +235,13 @@ function Landing() {
       <section className="relative px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto mb-14 max-w-4xl text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              Apresentação
-            </span>
-            <h2 className="mt-5 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
               <span className="text-gradient">
                 Uma solução que integra engenharia avançada e precisão clínica na reabilitação de casos complexos.
               </span>
             </h2>
           </div>
+
 
           <div className="grid items-center gap-10 lg:grid-cols-12">
             {/* Selo + logo */}
@@ -295,10 +298,7 @@ function Landing() {
                     </div>
                   </div>
                   <div className="sm:col-span-3">
-                    <div className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-                      Visão
-                    </div>
-                    <h3 className="mt-4 text-2xl font-bold leading-snug md:text-3xl">
+                    <h3 className="text-2xl font-bold leading-snug md:text-3xl">
                       <span className="text-gradient-cyan">Tecnologia que expande</span>{" "}
                       <span className="text-gradient">os horizontes clínicos da reabilitação oral.</span>
                     </h3>
@@ -307,6 +307,7 @@ function Landing() {
                       e desempenho biomecânico em casos complexos.
                     </p>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -318,20 +319,17 @@ function Landing() {
       <section className="relative px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              Diferenciais
-            </span>
-            <h2 className="mt-5 text-4xl font-bold leading-tight md:text-5xl">
+            <h2 className="text-4xl font-bold leading-tight md:text-5xl">
               Engenharia <span className="text-gradient-cyan">biomecânica</span> aplicada
             </h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { Icon: Hexagon, t: "Paraboloide hiperbólico", d: "Alta rigidez e menos tensão" },
-              { Icon: Layers, t: "3 coroas, 1 implante", d: "Múltiplas reabilitações" },
-              { Icon: Minimize2, t: "Sem cantilever", d: "Melhor comportamento mecânico" },
-              { Icon: Zap, t: "Sem soldas", d: "Menos riscos de distorções protéticas" },
+              { t: "Paraboloide hiperbólico", d: "Alta rigidez e menos tensão" },
+              { t: "3 coroas, 1 implante", d: "Múltiplas reabilitações" },
+              { t: "Sem cantilever", d: "Melhor comportamento mecânico" },
+              { t: "Sem soldas", d: "Menos riscos de distorções protéticas" },
             ].map((item, i) => (
               <div
                 key={item.t}
@@ -341,7 +339,10 @@ function Landing() {
                 <div className="relative">
                   <div className="mb-5 flex items-center justify-between">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-accent/10 text-primary transition-all group-hover:scale-110 group-hover:border-primary/60">
-                      <item.Icon className="h-6 w-6" strokeWidth={1.6} />
+                      {/* Tooth/implant icon — same for all differentials */}
+                      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M12 2.5c-2.8 0-5 1.6-5 4 0 1.4.5 2.4.9 3.5.5 1.4.7 2.7.6 4.1-.1 1.6-.4 3-.6 4.7-.2 1.6.4 2.7 1.5 2.7 1 0 1.4-.7 1.6-1.7l.5-2.7c.1-.7.5-1.1 1-1.1.4 0 .8.4 1 1.1l.5 2.7c.2 1 .6 1.7 1.6 1.7 1.1 0 1.7-1.1 1.5-2.7-.2-1.7-.5-3.1-.6-4.7-.1-1.4.1-2.7.6-4.1.4-1.1.9-2.1.9-3.5 0-2.4-2.2-4-5-4z"/>
+                      </svg>
                     </div>
                     <div className="font-mono text-xs text-primary/70">0{i + 1}</div>
                   </div>
@@ -353,16 +354,14 @@ function Landing() {
             ))}
           </div>
         </div>
+
       </section>
 
       {/* AUTORIDADE CIENTÍFICA */}
       <section className="relative px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-              Autoridade Científica
-            </span>
-            <h2 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">
+            <h2 className="text-4xl font-bold leading-tight md:text-6xl">
               <span className="text-gradient">Desempenho comprovado</span>
             </h2>
             <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
@@ -370,6 +369,7 @@ function Landing() {
               simulando diferentes condições clínicas e cargas mastigatórias.
             </p>
           </div>
+
 
           {/* Carousel of charts */}
           <div className="mx-auto max-w-5xl">
@@ -454,10 +454,7 @@ function Landing() {
 
             <div className="relative grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-7">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-                  Conexão com o evento
-                </span>
-                <h2 className="mt-5 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+                <h2 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
                   <span className="text-gradient-cyan">O Sobrapi 2026</span>
                   <span className="text-gradient mt-2 block">marca este momento</span>
                 </h2>
@@ -472,6 +469,27 @@ function Landing() {
                   <div className="hidden h-10 w-px bg-white/10 sm:block" />
                   <div className="hidden text-xs uppercase tracking-[0.25em] text-muted-foreground sm:block">
                     Evento oficial
+                  </div>
+                </div>
+
+                {/* Minascentro photo */}
+                <div className="group relative mt-8 overflow-hidden rounded-2xl border border-white/10">
+                  <img
+                    src={minascentroImg}
+                    alt="Minascentro — Belo Horizonte"
+                    className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04] md:h-64"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between px-5 py-4">
+                    <div>
+                      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/90">
+                        Sede oficial
+                      </div>
+                      <div className="mt-1 text-lg font-bold text-foreground">Minascentro · Belo Horizonte</div>
+                    </div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-navy-deep/60 text-primary backdrop-blur">
+                      <MapPin className="h-4 w-4" strokeWidth={1.8} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -503,6 +521,7 @@ function Landing() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
