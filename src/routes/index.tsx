@@ -480,6 +480,7 @@ function Landing() {
                   <div className="hidden text-xs uppercase tracking-[0.25em] text-muted-foreground sm:block">
                     Evento oficial
                   </div>
+                </div>
               </div>
 
               <div className="space-y-5 lg:col-span-5">
