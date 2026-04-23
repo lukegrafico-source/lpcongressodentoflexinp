@@ -115,6 +115,60 @@ function ChartsCarousel() {
   );
 }
 
+type Paper = { src: string; title: string; journal: string };
+
+function PapersCarousel({ papers, PaperCard }: { papers: Paper[]; PaperCard: (props: { p: Paper }) => JSX.Element }) {
+  const [index, setIndex] = useState(0);
+  const next = () => setIndex((i) => (i + 1) % papers.length);
+  const prev = () => setIndex((i) => (i - 1 + papers.length) % papers.length);
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {papers.map((p) => (
+            <div key={p.title} className="min-w-full px-1">
+              <PaperCard p={p} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-5 flex items-center justify-center gap-3">
+        <button
+          onClick={prev}
+          aria-label="Anterior"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-navy-deep/70 text-primary backdrop-blur transition hover:bg-navy-deep"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+        <div className="flex items-center gap-2">
+          {papers.map((p, i) => (
+            <button
+              key={p.title}
+              aria-label={`Ir para ${p.title}`}
+              onClick={() => setIndex(i)}
+              className={`h-1.5 rounded-full transition-all ${
+                i === index ? "w-8 bg-primary" : "w-3 bg-white/20 hover:bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+        <button
+          onClick={next}
+          aria-label="Próximo"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-navy-deep/70 text-primary backdrop-blur transition hover:bg-navy-deep"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function Landing() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
