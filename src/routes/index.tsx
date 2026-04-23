@@ -9,7 +9,10 @@ import graficoMesh from "@/assets/grafico-mesh.png";
 import logoSobrapi from "@/assets/logo-sobrapi.png";
 import bgTech from "@/assets/background.png";
 import minascentroImg from "@/assets/minascentro.png";
-import { Aperture, MapPin, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
+import paperBea from "@/assets/paper-bea.png";
+import paperIjmir from "@/assets/paper-ijmir.png";
+import paperPerio from "@/assets/paper-perio.png";
+import { MapPin, CalendarDays, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -408,31 +411,37 @@ function Landing() {
 
           {/* Artigos científicos */}
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[1, 2, 3].map((n) => (
+            {[
+              { src: paperBea, title: "Biomedical Engineering Advances", journal: "Elsevier · ISSN 2667-0992" },
+              { src: paperIjmir, title: "Biomechanical Evaluation of Triple Abutment System", journal: "IJMIR · 2026" },
+              { src: paperPerio, title: "Innovative Double or Triple Dental Abutment-Implant", journal: "Perio Advances · 2024" },
+            ].map((p, i) => (
               <a
-                key={n}
+                key={p.title}
                 href="#"
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-6 backdrop-blur-md transition-all hover:border-primary/40"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-5 backdrop-blur-md transition-all hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_oklch(0.65_0.14_220/0.45)]"
               >
-                <div className="aspect-[3/4] rounded-lg border border-white/10 bg-gradient-to-br from-navy-light/40 to-navy-deep/60 p-6 transition-transform group-hover:scale-[1.02]">
-                  <div className="flex h-full flex-col justify-between">
-                    <div>
-                      <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary/80">
-                        Artigo Científico
-                      </div>
-                      <div className="mt-2 font-mono text-xs text-muted-foreground">
-                        Paper 0{n}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="mb-3 h-px w-full bg-gradient-to-r from-primary/60 to-transparent" />
-                      <div className="text-xs uppercase tracking-wider text-foreground/70">
-                        Dentoflex.inp · Research
-                      </div>
-                    </div>
+                <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white">
+                  <img
+                    src={p.src}
+                    alt={p.title}
+                    className="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-transparent opacity-60" />
+                  <div className="absolute left-3 top-3 rounded-md border border-white/15 bg-navy-deep/70 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-primary backdrop-blur">
+                    Paper 0{i + 1}
                   </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary/80">
+                    Artigo Científico
+                  </div>
+                  <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-foreground">
+                    {p.title}
+                  </h3>
+                  <div className="mt-1 text-xs text-muted-foreground">{p.journal}</div>
+                </div>
+                <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
                   <span className="text-sm font-medium">Acessar material</span>
                   <svg className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -442,6 +451,7 @@ function Landing() {
               </a>
             ))}
           </div>
+
         </div>
       </section>
 
@@ -470,43 +480,36 @@ function Landing() {
                   <div className="hidden text-xs uppercase tracking-[0.25em] text-muted-foreground sm:block">
                     Evento oficial
                   </div>
-                </div>
-
-                {/* Minascentro photo */}
-                <div className="group relative mt-8 overflow-hidden rounded-2xl border border-white/10">
-                  <img
-                    src={minascentroImg}
-                    alt="Minascentro — Belo Horizonte"
-                    className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04] md:h-64"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between px-5 py-4">
-                    <div>
-                      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary/90">
-                        Sede oficial
-                      </div>
-                      <div className="mt-1 text-lg font-bold text-foreground">Minascentro · Belo Horizonte</div>
-                    </div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-navy-deep/60 text-primary backdrop-blur">
-                      <MapPin className="h-4 w-4" strokeWidth={1.8} />
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div className="space-y-5 lg:col-span-5">
-                <div className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all hover:border-primary/40">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-accent/10 text-primary transition-transform group-hover:scale-110">
-                    <MapPin className="h-5 w-5" strokeWidth={1.8} />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                      Local
+                {/* Local card with Minascentro photo */}
+                <div className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-all hover:border-primary/40">
+                  <div className="relative h-44 overflow-hidden md:h-52">
+                    <img
+                      src={minascentroImg}
+                      alt="Minascentro — Belo Horizonte"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/30 to-transparent" />
+                    <div className="absolute left-4 top-4 rounded-md border border-white/15 bg-navy-deep/70 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-primary backdrop-blur">
+                      Sede oficial
                     </div>
-                    <div className="mt-2 text-xl font-bold">Minascentro</div>
-                    <div className="text-sm text-muted-foreground">Belo Horizonte</div>
+                  </div>
+                  <div className="flex items-start gap-4 p-6">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-accent/10 text-primary transition-transform group-hover:scale-110">
+                      <MapPin className="h-5 w-5" strokeWidth={1.8} />
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                        Local
+                      </div>
+                      <div className="mt-2 text-xl font-bold">Minascentro</div>
+                      <div className="text-sm text-muted-foreground">Belo Horizonte</div>
+                    </div>
                   </div>
                 </div>
+
                 <div className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all hover:border-primary/40">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-accent/10 text-primary transition-transform group-hover:scale-110">
                     <CalendarDays className="h-5 w-5" strokeWidth={1.8} />
