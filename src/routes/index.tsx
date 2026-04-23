@@ -1,10 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import produtoImg from "@/assets/produto.png";
 import logoVertical from "@/assets/logo-vertical.png";
 import logoHorizontal from "@/assets/logo-horizontal.png";
 import graficoCC from "@/assets/grafico-cc.png";
 import graficoDA from "@/assets/grafico-da.png";
+import graficoMesh from "@/assets/grafico-mesh.png";
+import logoSobrapi from "@/assets/logo-sobrapi.png";
 import bgTech from "@/assets/background.png";
+import {
+  Hexagon,
+  Layers,
+  Minimize2,
+  Zap,
+  MapPin,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,20 +46,86 @@ const WhatsAppIcon = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-const PhoneIcon = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-);
-
 const WHATSAPP_LINK = "https://wa.me/5511995898239";
+
+const charts = [
+  { src: graficoCC, label: "Análise FEA — CC", code: "FEA-001" },
+  { src: graficoDA, label: "Análise FEA — DA", code: "FEA-002" },
+  { src: graficoMesh, label: "Mesh Convergence — TA", code: "FEA-003" },
+];
+
+function ChartsCarousel() {
+  const [index, setIndex] = useState(0);
+  const next = () => setIndex((i) => (i + 1) % charts.length);
+  const prev = () => setIndex((i) => (i - 1 + charts.length) % charts.length);
+
+  useEffect(() => {
+    const id = setInterval(next, 6500);
+    return () => clearInterval(id);
+  }, []);
+
+  const current = charts[index];
+
+  return (
+    <div className="glass-strong relative overflow-hidden rounded-2xl p-5 md:p-6">
+      <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="flex items-center gap-3">
+          <div className="h-2 w-2 rounded-full bg-primary pulse-glow" />
+          <span className="text-sm font-semibold uppercase tracking-wider">{current.label}</span>
+        </div>
+        <span className="font-mono text-xs text-muted-foreground">{current.code}</span>
+      </div>
+
+      <div className="relative overflow-hidden rounded-xl bg-white/95">
+        <div
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {charts.map((c) => (
+            <div key={c.code} className="min-w-full p-4">
+              <img src={c.src} alt={c.label} className="mx-auto h-auto w-full object-contain" />
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={prev}
+          aria-label="Anterior"
+          className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-navy-deep/80 text-primary backdrop-blur transition hover:bg-navy-deep"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          onClick={next}
+          aria-label="Próximo"
+          className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-navy-deep/80 text-primary backdrop-blur transition hover:bg-navy-deep"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+
+      <div className="mt-5 flex items-center justify-center gap-2">
+        {charts.map((c, i) => (
+          <button
+            key={c.code}
+            aria-label={`Ir para ${c.label}`}
+            onClick={() => setIndex(i)}
+            className={`h-1.5 rounded-full transition-all ${
+              i === index ? "w-8 bg-primary" : "w-3 bg-white/20 hover:bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Landing() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
       {/* Persistent tech background */}
       <div
-        className="fixed inset-0 -z-10 opacity-60"
+        className="fixed inset-0 -z-10 opacity-50"
         style={{
           backgroundImage: `url(${bgTech})`,
           backgroundSize: "cover",
@@ -54,12 +133,21 @@ function Landing() {
           backgroundAttachment: "fixed",
         }}
       />
-      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/70 to-background" />
-      <div className="fixed inset-0 -z-10 grid-pattern opacity-30" />
+      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-background/85 via-background/75 to-background" />
+      <div className="fixed inset-0 -z-10 grid-pattern opacity-25" />
+
+      {/* Floating geometric accents — inspired by reference */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="geo-accent" style={{ top: "-8%", left: "-6%", width: "420px", height: "420px" }} />
+        <div className="geo-accent" style={{ top: "30%", right: "-10%", width: "520px", height: "520px" }} />
+        <div className="geo-accent" style={{ bottom: "-10%", left: "20%", width: "380px", height: "380px" }} />
+        <div className="geo-shine" style={{ top: "10%", left: "18%", height: "260px", transform: "rotate(35deg)" }} />
+        <div className="geo-shine" style={{ top: "55%", right: "22%", height: "320px", transform: "rotate(35deg)" }} />
+      </div>
 
       {/* NAV */}
       <header className="relative z-20">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
           <img src={logoHorizontal} alt="Dentoflex.inp" className="h-7 w-auto md:h-8" />
           <a
             href={WHATSAPP_LINK}
@@ -74,8 +162,8 @@ function Landing() {
       </header>
 
       {/* HERO */}
-      <section className="relative px-6 pt-8 pb-24 lg:px-10 lg:pt-16 lg:pb-32">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-12">
+      <section className="relative px-6 pt-6 pb-16 lg:px-10 lg:pt-12 lg:pb-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <div className="reveal mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-glow" />
@@ -91,12 +179,12 @@ function Landing() {
               A nova era da implantodontia
             </p>
 
-            <div className="reveal reveal-delay-3 mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="reveal reveal-delay-3 mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.65_0.14_220/0.6)] transition-all hover:shadow-[0_15px_60px_-10px_oklch(0.65_0.14_220/0.9)] hover:scale-[1.02]"
+                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.65_0.14_220/0.6)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_60px_-10px_oklch(0.65_0.14_220/0.9)]"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                 Fale com um especialista
@@ -113,13 +201,14 @@ function Landing() {
 
           <div className="reveal reveal-delay-2 relative lg:col-span-6">
             <div className="relative mx-auto aspect-square max-w-[560px]">
-              {/* Glow rings */}
-              <div className="absolute inset-0 rounded-full bg-gradient-radial from-primary/30 via-primary/5 to-transparent blur-3xl" style={{ background: "radial-gradient(circle, oklch(0.65 0.14 220 / 0.35), transparent 60%)" }} />
+              <div
+                className="absolute inset-0 rounded-full blur-3xl"
+                style={{ background: "radial-gradient(circle, oklch(0.65 0.14 220 / 0.35), transparent 60%)" }}
+              />
               <div className="absolute inset-8 rounded-full border border-primary/20" />
               <div className="absolute inset-16 rounded-full border border-primary/10" />
               <div className="absolute inset-24 rounded-full border border-primary/5" />
 
-              {/* Tech corner marks */}
               <div className="absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-primary/60" />
               <div className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-primary/60" />
               <div className="absolute bottom-0 left-0 h-8 w-8 border-b-2 border-l-2 border-primary/60" />
@@ -134,34 +223,91 @@ function Landing() {
           </div>
         </div>
 
-        <div className="tech-line mx-auto mt-20 max-w-7xl" />
+        <div className="tech-line mx-auto mt-12 max-w-7xl" />
       </section>
 
       {/* APRESENTAÇÃO */}
-      <section className="relative px-6 py-24 lg:px-10 lg:py-32">
-        <div className="mx-auto max-w-5xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
-            Apresentação
-          </span>
-          <h2 className="mt-6 text-3xl font-bold leading-tight md:text-5xl lg:text-6xl">
-            <span className="text-gradient">
-              Uma solução que integra engenharia avançada e precisão clínica na reabilitação de casos complexos.
+      <section className="relative px-6 py-16 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto mb-14 max-w-4xl text-center">
+            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              Apresentação
             </span>
-          </h2>
+            <h2 className="mt-5 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+              <span className="text-gradient">
+                Uma solução que integra engenharia avançada e precisão clínica na reabilitação de casos complexos.
+              </span>
+            </h2>
+          </div>
 
-          <div className="mt-16 grid gap-6 sm:grid-cols-2">
-            <div className="glass-strong rounded-2xl p-8 text-left">
-              <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                Pré-lançamento exclusivo
+          <div className="grid items-center gap-10 lg:grid-cols-12">
+            {/* Selo + logo */}
+            <div className="lg:col-span-5">
+              <div className="glass-strong relative overflow-hidden rounded-3xl p-10 text-center">
+                <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/15 blur-3xl" />
+                <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-accent/15 blur-3xl" />
+
+                {/* Selo */}
+                <div className="relative mx-auto flex h-44 w-44 items-center justify-center md:h-52 md:w-52">
+                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/40 animate-[spin_20s_linear_infinite]" />
+                  <div className="absolute inset-3 rounded-full border border-primary/30" />
+                  <div className="absolute inset-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/10 backdrop-blur" />
+                  <div className="relative text-center">
+                    <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-primary/90">
+                      Pré-lançamento
+                    </div>
+                    <div className="mt-1 text-2xl font-extrabold text-gradient-cyan md:text-3xl">
+                      Exclusivo
+                    </div>
+                    <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.3em] text-primary/80">
+                      2026 · Edition
+                    </div>
+                  </div>
+                </div>
+
+                <div className="tech-line mx-auto mt-8 w-24" />
+                <div className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+                  Apresentado por
+                </div>
+                <img
+                  src={logoHorizontal}
+                  alt="Dentoflex.inp"
+                  className="mx-auto mt-4 h-8 w-auto opacity-95 md:h-10"
+                />
               </div>
-              <div className="mt-3 text-2xl font-bold">Dentoflex.inp</div>
             </div>
-            <div className="glass-strong rounded-2xl p-8 text-left">
-              <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                Visão
-              </div>
-              <div className="mt-3 text-2xl font-bold leading-snug text-gradient">
-                Inovação que redefine as possibilidades na implantodontia.
+
+            {/* Visão + produto */}
+            <div className="relative lg:col-span-7">
+              <div className="glass rounded-3xl p-8 md:p-10">
+                <div className="grid items-center gap-8 sm:grid-cols-5">
+                  <div className="sm:col-span-2">
+                    <div className="relative mx-auto aspect-square max-w-[220px]">
+                      <div
+                        className="absolute inset-0 rounded-full blur-2xl"
+                        style={{ background: "radial-gradient(circle, oklch(0.65 0.14 220 / 0.4), transparent 65%)" }}
+                      />
+                      <img
+                        src={produtoImg}
+                        alt="T CONNECT Abutment Triplo"
+                        className="float-slow relative z-10 h-full w-full object-contain"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-3">
+                    <div className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+                      Visão
+                    </div>
+                    <h3 className="mt-4 text-2xl font-bold leading-snug md:text-3xl">
+                      <span className="text-gradient-cyan">Tecnologia que expande</span>{" "}
+                      <span className="text-gradient">os horizontes clínicos da reabilitação oral.</span>
+                    </h3>
+                    <p className="mt-5 text-sm leading-relaxed text-muted-foreground md:text-base">
+                      Engenharia de precisão pensada para entregar previsibilidade, estabilidade
+                      e desempenho biomecânico em casos complexos.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -169,23 +315,23 @@ function Landing() {
       </section>
 
       {/* DIFERENCIAIS */}
-      <section className="relative px-6 py-24 lg:px-10 lg:py-32">
+      <section className="relative px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-16 max-w-3xl">
+          <div className="mb-12 max-w-3xl">
             <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
               Diferenciais
             </span>
-            <h2 className="mt-6 text-4xl font-bold leading-tight md:text-5xl">
+            <h2 className="mt-5 text-4xl font-bold leading-tight md:text-5xl">
               Engenharia <span className="text-gradient-cyan">biomecânica</span> aplicada
             </h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { t: "Paraboloide hiperbólico", d: "Alta rigidez e menos tensão" },
-              { t: "3 coroas, 1 implante", d: "Múltiplas reabilitações" },
-              { t: "Sem cantilever", d: "Melhor comportamento mecânico" },
-              { t: "Sem soldas", d: "Menos riscos de distorções protéticas" },
+              { Icon: Hexagon, t: "Paraboloide hiperbólico", d: "Alta rigidez e menos tensão" },
+              { Icon: Layers, t: "3 coroas, 1 implante", d: "Múltiplas reabilitações" },
+              { Icon: Minimize2, t: "Sem cantilever", d: "Melhor comportamento mecânico" },
+              { Icon: Zap, t: "Sem soldas", d: "Menos riscos de distorções protéticas" },
             ].map((item, i) => (
               <div
                 key={item.t}
@@ -193,8 +339,11 @@ function Landing() {
               >
                 <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative">
-                  <div className="mb-6 font-mono text-xs text-primary/80">
-                    0{i + 1}
+                  <div className="mb-5 flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-accent/10 text-primary transition-all group-hover:scale-110 group-hover:border-primary/60">
+                      <item.Icon className="h-6 w-6" strokeWidth={1.6} />
+                    </div>
+                    <div className="font-mono text-xs text-primary/70">0{i + 1}</div>
                   </div>
                   <h3 className="text-xl font-bold leading-tight text-gradient">{item.t}</h3>
                   <div className="my-5 h-px w-10 bg-primary/40 transition-all group-hover:w-20" />
@@ -207,44 +356,28 @@ function Landing() {
       </section>
 
       {/* AUTORIDADE CIENTÍFICA */}
-      <section className="relative px-6 py-24 lg:px-10 lg:py-32">
+      <section className="relative px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-16 text-center">
+          <div className="mb-12 text-center">
             <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
               Autoridade Científica
             </span>
-            <h2 className="mt-6 text-4xl font-bold leading-tight md:text-6xl">
+            <h2 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">
               <span className="text-gradient">Desempenho comprovado</span>
             </h2>
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
               O T Connect foi avaliado por meio de análises por elementos finitos (FEA),
               simulando diferentes condições clínicas e cargas mastigatórias.
             </p>
           </div>
 
-          {/* Dashboard-style charts */}
-          <div className="grid gap-6 lg:grid-cols-2">
-            {[
-              { src: graficoCC, label: "Análise FEA — CC", code: "FEA-001" },
-              { src: graficoDA, label: "Análise FEA — DA", code: "FEA-002" },
-            ].map((g) => (
-              <div key={g.code} className="glass-strong relative overflow-hidden rounded-2xl p-6">
-                <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="h-2 w-2 rounded-full bg-primary pulse-glow" />
-                    <span className="text-sm font-semibold uppercase tracking-wider">{g.label}</span>
-                  </div>
-                  <span className="font-mono text-xs text-muted-foreground">{g.code}</span>
-                </div>
-                <div className="rounded-xl bg-white/95 p-4">
-                  <img src={g.src} alt={g.label} className="h-auto w-full" />
-                </div>
-              </div>
-            ))}
+          {/* Carousel of charts */}
+          <div className="mx-auto max-w-5xl">
+            <ChartsCarousel />
           </div>
 
           {/* Resultados */}
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
               "Distribuição equilibrada de tensões no sistema",
               "Comportamento biomecânico estável em diferentes materiais",
@@ -261,20 +394,20 @@ function Landing() {
             ))}
           </div>
 
-          <div className="mx-auto mt-20 max-w-4xl text-center">
+          <div className="mx-auto mt-14 max-w-4xl text-center">
             <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
               Estudos clínicos demonstram baixa perda óssea marginal ao longo do tempo,
               condições peri-implantares estáveis e alta previsibilidade em reabilitações
               com múltiplas coroas sobre um único implante.
             </p>
-            <div className="tech-line mx-auto mt-10 w-32" />
-            <p className="mt-10 text-2xl font-semibold text-gradient-cyan md:text-3xl">
+            <div className="tech-line mx-auto mt-8 w-32" />
+            <p className="mt-8 text-2xl font-semibold text-gradient-cyan md:text-3xl">
               Ciência aplicada e validada na prática clínica.
             </p>
           </div>
 
           {/* Artigos científicos */}
-          <div className="mt-20 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {[1, 2, 3].map((n) => (
               <a
                 key={n}
@@ -313,41 +446,60 @@ function Landing() {
       </section>
 
       {/* CONEXÃO COM O EVENTO */}
-      <section className="relative px-6 py-24 lg:px-10 lg:py-32">
+      <section className="relative px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="glass-strong relative overflow-hidden rounded-3xl p-10 md:p-16">
+          <div className="glass-strong relative overflow-hidden rounded-3xl p-8 md:p-14">
             <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/15 blur-[100px]" />
             <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-accent/15 blur-[100px]" />
 
-            <div className="relative grid gap-12 lg:grid-cols-12">
+            <div className="relative grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-7">
                 <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
                   Conexão com o evento
                 </span>
-                <h2 className="mt-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+                <h2 className="mt-5 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
                   <span className="text-gradient-cyan">O Sobrapi 2026</span>
                   <span className="text-gradient mt-2 block">marca este momento</span>
                 </h2>
-                <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
                   O T Connect será apresentado ao público especializado durante o
                   <span className="font-semibold text-foreground"> 31º Congresso Brasileiro de Periodontia e Implantodontia.</span>
                 </p>
+
+                {/* Sobrapi logo */}
+                <div className="mt-8 inline-flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-4">
+                  <img src={logoSobrapi} alt="Sobrapi 2026" className="h-12 w-auto md:h-14" />
+                  <div className="hidden h-10 w-px bg-white/10 sm:block" />
+                  <div className="hidden text-xs uppercase tracking-[0.25em] text-muted-foreground sm:block">
+                    Evento oficial
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-5 lg:col-span-5">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                  <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                    Local
+                <div className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all hover:border-primary/40">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-accent/10 text-primary transition-transform group-hover:scale-110">
+                    <MapPin className="h-5 w-5" strokeWidth={1.8} />
                   </div>
-                  <div className="mt-3 text-xl font-bold">Minascentro</div>
-                  <div className="text-sm text-muted-foreground">Belo Horizonte</div>
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                      Local
+                    </div>
+                    <div className="mt-2 text-xl font-bold">Minascentro</div>
+                    <div className="text-sm text-muted-foreground">Belo Horizonte</div>
+                  </div>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
-                  <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                    Data
+                <div className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all hover:border-primary/40">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-gradient-to-br from-primary/15 to-accent/10 text-primary transition-transform group-hover:scale-110">
+                    <CalendarDays className="h-5 w-5" strokeWidth={1.8} />
                   </div>
-                  <div className="mt-3 text-xl font-bold">30 de abril a 2 de maio</div>
-                  <div className="text-sm text-muted-foreground">2026</div>
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                      Data
+                    </div>
+                    <div className="mt-2 text-xl font-bold">30 de abril a 2 de maio</div>
+                    <div className="text-sm text-muted-foreground">2026</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -356,20 +508,20 @@ function Landing() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="relative px-6 py-24 lg:px-10 lg:py-40">
+      <section className="relative px-6 py-16 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-5xl text-center">
           <h2 className="text-4xl font-bold leading-tight md:text-6xl lg:text-7xl">
             <span className="text-gradient">Leve sua performance clínica</span>
             <span className="text-gradient-cyan mt-3 block">ao próximo nível</span>
           </h2>
 
-          <p className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
             Fale agora com um especialista
             <br className="hidden sm:block" />
             e descubra como integrar o T Connect à sua prática
           </p>
 
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href={WHATSAPP_LINK}
               target="_blank"
@@ -382,15 +534,15 @@ function Landing() {
             </a>
           </div>
 
-          <div className="mt-24 flex flex-col items-center">
-            <div className="tech-line mb-12 w-40" />
+          <div className="mt-16 flex flex-col items-center">
+            <div className="tech-line mb-10 w-40" />
             <img src={logoVertical} alt="Dentoflex.inp" className="h-24 w-auto opacity-90 md:h-28" />
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="relative border-t border-white/5 px-6 py-10 lg:px-10">
+      <footer className="relative border-t border-white/5 px-6 py-8 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-xs text-muted-foreground md:flex-row">
           <div>© {new Date().getFullYear()} Dentoflex.inp · Todos os direitos reservados</div>
           <div className="font-mono uppercase tracking-[0.25em]">T CONNECT · Pré-lançamento</div>
