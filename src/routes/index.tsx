@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import * as React from "react";
 import { useEffect, useState } from "react";
 import produtoImg from "@/assets/produto.png";
 import logoVertical from "@/assets/logo-vertical.png";
@@ -110,6 +111,60 @@ function ChartsCarousel() {
             }`}
           />
         ))}
+      </div>
+    </div>
+  );
+}
+
+type Paper = { src: string; title: string; journal: string };
+
+function PapersCarousel({ papers, PaperCard }: { papers: Paper[]; PaperCard: (props: { p: Paper }) => React.ReactElement }) {
+  const [index, setIndex] = useState(0);
+  const next = () => setIndex((i) => (i + 1) % papers.length);
+  const prev = () => setIndex((i) => (i - 1 + papers.length) % papers.length);
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
+          {papers.map((p) => (
+            <div key={p.title} className="min-w-full px-1">
+              <PaperCard p={p} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-5 flex items-center justify-center gap-3">
+        <button
+          onClick={prev}
+          aria-label="Anterior"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-navy-deep/70 text-primary backdrop-blur transition hover:bg-navy-deep"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+        <div className="flex items-center gap-2">
+          {papers.map((p, i) => (
+            <button
+              key={p.title}
+              aria-label={`Ir para ${p.title}`}
+              onClick={() => setIndex(i)}
+              className={`h-1.5 rounded-full transition-all ${
+                i === index ? "w-8 bg-primary" : "w-3 bg-white/20 hover:bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+        <button
+          onClick={next}
+          aria-label="Próximo"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-navy-deep/70 text-primary backdrop-blur transition hover:bg-navy-deep"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
       </div>
     </div>
   );
@@ -410,16 +465,16 @@ function Landing() {
           </div>
 
           {/* Artigos científicos */}
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[
+          {(() => {
+            const papers = [
               { src: paperBea, title: "Biomedical Engineering Advances", journal: "Elsevier · ISSN 2667-0992" },
               { src: paperIjmir, title: "Biomechanical Evaluation of Triple Abutment System", journal: "IJMIR · 2026" },
               { src: paperPerio, title: "Innovative Double or Triple Dental Abutment-Implant", journal: "Perio Advances · 2024" },
-            ].map((p, i) => (
+            ];
+            const PaperCard = ({ p }: { p: typeof papers[number] }) => (
               <a
-                key={p.title}
                 href="#"
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-5 backdrop-blur-md transition-all hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_oklch(0.65_0.14_220/0.45)]"
+                className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-5 backdrop-blur-md transition-all hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_oklch(0.65_0.14_220/0.45)]"
               >
                 <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white">
                   <img
@@ -428,9 +483,6 @@ function Landing() {
                     className="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-transparent opacity-60" />
-                  <div className="absolute left-3 top-3 rounded-md border border-white/15 bg-navy-deep/70 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-primary backdrop-blur">
-                    Paper 0{i + 1}
-                  </div>
                 </div>
                 <div className="mt-4">
                   <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary/80">
@@ -449,8 +501,20 @@ function Landing() {
                   </svg>
                 </div>
               </a>
-            ))}
-          </div>
+            );
+            return (
+              <>
+                {/* Desktop grid */}
+                <div className="mt-14 hidden gap-6 md:grid md:grid-cols-3">
+                  {papers.map((p) => <PaperCard key={p.title} p={p} />)}
+                </div>
+                {/* Mobile carousel */}
+                <div className="mt-10 md:hidden">
+                  <PapersCarousel papers={papers} PaperCard={PaperCard} />
+                </div>
+              </>
+            );
+          })()}
 
         </div>
       </section>
