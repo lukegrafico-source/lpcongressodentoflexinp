@@ -118,7 +118,47 @@ function ChartsCarousel() {
 
 type Paper = { src: string; title: string; journal: string };
 
-function PapersCarousel({ papers, PaperCard }: { papers: Paper[]; PaperCard: (props: { p: Paper }) => React.ReactElement }) {
+const papers: Paper[] = [
+  { src: paperBea, title: "Biomedical Engineering Advances", journal: "Elsevier · ISSN 2667-0992" },
+  { src: paperIjmir, title: "Biomechanical Evaluation of Triple Abutment System", journal: "IJMIR · 2026" },
+  { src: paperPerio, title: "Innovative Double or Triple Dental Abutment-Implant", journal: "Perio Advances · 2024" },
+];
+
+function PaperCard({ p }: { p: Paper }) {
+  return (
+    <a
+      href="#"
+      className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-5 backdrop-blur-md transition-all hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_oklch(0.65_0.14_220/0.45)]"
+    >
+      <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white">
+        <img
+          src={p.src}
+          alt={p.title}
+          className="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-transparent opacity-60" />
+      </div>
+      <div className="mt-4">
+        <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary/80">
+          Artigo Científico
+        </div>
+        <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-foreground">
+          {p.title}
+        </h3>
+        <div className="mt-1 text-xs text-muted-foreground">{p.journal}</div>
+      </div>
+      <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
+        <span className="text-sm font-medium">Acessar material</span>
+        <svg className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </div>
+    </a>
+  );
+}
+
+function PapersCarousel() {
   const [index, setIndex] = useState(0);
   const next = () => setIndex((i) => (i + 1) % papers.length);
   const prev = () => setIndex((i) => (i - 1 + papers.length) % papers.length);
@@ -465,56 +505,14 @@ function Landing() {
           </div>
 
           {/* Artigos científicos */}
-          {(() => {
-            const papers = [
-              { src: paperBea, title: "Biomedical Engineering Advances", journal: "Elsevier · ISSN 2667-0992" },
-              { src: paperIjmir, title: "Biomechanical Evaluation of Triple Abutment System", journal: "IJMIR · 2026" },
-              { src: paperPerio, title: "Innovative Double or Triple Dental Abutment-Implant", journal: "Perio Advances · 2024" },
-            ];
-            const PaperCard = ({ p }: { p: typeof papers[number] }) => (
-              <a
-                href="#"
-                className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-5 backdrop-blur-md transition-all hover:border-primary/40 hover:shadow-[0_20px_60px_-20px_oklch(0.65_0.14_220/0.45)]"
-              >
-                <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white">
-                  <img
-                    src={p.src}
-                    alt={p.title}
-                    className="aspect-[3/4] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-transparent opacity-60" />
-                </div>
-                <div className="mt-4">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary/80">
-                    Artigo Científico
-                  </div>
-                  <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-snug text-foreground">
-                    {p.title}
-                  </h3>
-                  <div className="mt-1 text-xs text-muted-foreground">{p.journal}</div>
-                </div>
-                <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
-                  <span className="text-sm font-medium">Acessar material</span>
-                  <svg className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </div>
-              </a>
-            );
-            return (
-              <>
-                {/* Desktop grid */}
-                <div className="mt-14 hidden gap-6 md:grid md:grid-cols-3">
-                  {papers.map((p) => <PaperCard key={p.title} p={p} />)}
-                </div>
-                {/* Mobile carousel */}
-                <div className="mt-10 md:hidden">
-                  <PapersCarousel papers={papers} PaperCard={PaperCard} />
-                </div>
-              </>
-            );
-          })()}
+          {/* Desktop grid */}
+          <div className="mt-14 hidden gap-6 md:grid md:grid-cols-3">
+            {papers.map((p) => <PaperCard key={p.title} p={p} />)}
+          </div>
+          {/* Mobile carousel */}
+          <div className="mt-10 md:hidden">
+            <PapersCarousel />
+          </div>
 
         </div>
       </section>
