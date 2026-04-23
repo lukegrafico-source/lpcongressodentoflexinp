@@ -117,7 +117,7 @@ function ChartsCarousel() {
 
 type Paper = { src: string; title: string; journal: string };
 
-function PapersCarousel({ papers, PaperCard }: { papers: Paper[]; PaperCard: (props: { p: Paper }) => JSX.Element }) {
+function PapersCarousel({ papers, PaperCard }: { papers: Paper[]; PaperCard: (props: { p: Paper }) => React.ReactElement }) {
   const [index, setIndex] = useState(0);
   const next = () => setIndex((i) => (i + 1) % papers.length);
   const prev = () => setIndex((i) => (i - 1 + papers.length) % papers.length);
