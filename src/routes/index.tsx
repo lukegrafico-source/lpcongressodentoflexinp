@@ -278,7 +278,7 @@ function Landing() {
               <span className="text-gradient mt-2 block">Abutment Triplo</span>
             </h1>
 
-            <p className="reveal reveal-delay-2 mt-6 max-w-xl text-xl font-light text-muted-foreground md:text-2xl">
+            <p className="reveal reveal-delay-2 mt-6 max-w-xl text-lg font-light text-muted-foreground md:text-xl">
               A nova era da implantodontia
             </p>
 
@@ -400,7 +400,7 @@ function Landing() {
                       <span className="text-gradient-cyan">Tecnologia que expande</span>{" "}
                       <span className="text-gradient">os horizontes clínicos da reabilitação oral.</span>
                     </h3>
-                    <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    <p className="mt-5 text-sm leading-relaxed text-muted-foreground md:text-base">
                       Engenharia de precisão pensada para entregar previsibilidade, estabilidade
                       e desempenho biomecânico em casos complexos.
                     </p>
@@ -446,7 +446,7 @@ function Landing() {
                   </div>
                   <h3 className="text-xl font-bold leading-tight text-gradient">{item.t}</h3>
                   <div className="my-5 h-px w-10 bg-primary/40 transition-all group-hover:w-20" />
-                  <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{item.d}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.d}</p>
                 </div>
               </div>
             ))}
@@ -462,7 +462,7 @@ function Landing() {
             <h2 className="text-4xl font-bold leading-tight md:text-6xl">
               <span className="text-gradient">Desempenho comprovado</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
               O T Connect foi avaliado por meio de análises por elementos finitos (FEA),
               simulando diferentes condições clínicas e cargas mastigatórias.
             </p>
@@ -487,13 +487,13 @@ function Landing() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <p className="text-base leading-relaxed text-foreground/90 md:text-lg">{r}</p>
+                <p className="text-sm leading-relaxed text-foreground/90">{r}</p>
               </div>
             ))}
           </div>
 
           <div className="mx-auto mt-14 max-w-4xl text-center">
-            <p className="text-lg leading-relaxed text-muted-foreground md:text-2xl">
+            <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
               Estudos clínicos demonstram baixa perda óssea marginal ao longo do tempo,
               condições peri-implantares estáveis e alta previsibilidade em reabilitações
               com múltiplas coroas sobre um único implante.
@@ -530,7 +530,7 @@ function Landing() {
                   <span className="text-gradient-cyan">O Sobrapi 2026</span>
                   <span className="text-gradient mt-2 block">marca este momento</span>
                 </h2>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
                   O T Connect será apresentado ao público especializado durante o
                   <span className="font-semibold text-foreground"> 31º Congresso Brasileiro de Periodontia e Implantodontia.</span>
                 </p>
@@ -600,7 +600,7 @@ function Landing() {
             <span className="text-gradient-cyan mt-3 block">ao próximo nível</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-2xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
             Fale agora com um especialista
             <br className="hidden sm:block" />
             e descubra como integrar o T Connect à sua prática
