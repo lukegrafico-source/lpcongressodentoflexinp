@@ -278,7 +278,7 @@ function Landing() {
               <span className="text-gradient mt-2 block">Abutment Triplo</span>
             </h1>
 
-            <p className="reveal reveal-delay-2 mt-6 max-w-xl text-lg font-light text-muted-foreground md:text-xl">
+            <p className="reveal reveal-delay-2 mt-6 max-w-xl text-xl font-light text-muted-foreground md:text-2xl">
               A nova era da implantodontia
             </p>
 
