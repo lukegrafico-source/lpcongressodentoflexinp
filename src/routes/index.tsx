@@ -400,7 +400,7 @@ function Landing() {
                       <span className="text-gradient-cyan">Tecnologia que expande</span>{" "}
                       <span className="text-gradient">os horizontes clínicos da reabilitação oral.</span>
                     </h3>
-                    <p className="mt-5 text-sm leading-relaxed text-muted-foreground md:text-base">
+                    <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
                       Engenharia de precisão pensada para entregar previsibilidade, estabilidade
                       e desempenho biomecânico em casos complexos.
                     </p>
