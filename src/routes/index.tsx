@@ -493,7 +493,7 @@ function Landing() {
           </div>
 
           <div className="mx-auto mt-14 max-w-4xl text-center">
-            <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
+            <p className="text-lg leading-relaxed text-muted-foreground md:text-2xl">
               Estudos clínicos demonstram baixa perda óssea marginal ao longo do tempo,
               condições peri-implantares estáveis e alta previsibilidade em reabilitações
               com múltiplas coroas sobre um único implante.
