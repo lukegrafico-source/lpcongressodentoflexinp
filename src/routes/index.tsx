@@ -284,7 +284,7 @@ function Landing() {
           </div>
 
           <div className="reveal reveal-delay-2 relative lg:col-span-6">
-            <div className="relative mx-auto aspect-square max-w-[560px]">
+            <div className="relative mx-auto aspect-square w-full max-w-[420px] lg:max-w-[460px]">
               <div
                 className="absolute inset-0 rounded-full blur-3xl"
                 style={{ background: "radial-gradient(circle, oklch(0.65 0.14 220 / 0.35), transparent 60%)" }}
@@ -304,18 +304,18 @@ function Landing() {
                 className="float-slow relative z-10 h-full w-full object-contain drop-shadow-[0_20px_60px_oklch(0.65_0.14_220/0.5)]"
               />
             </div>
-          </div>
 
-          <div className="reveal reveal-delay-3 flex justify-center lg:col-span-12">
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.65_0.14_220/0.6)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_60px_-10px_oklch(0.65_0.14_220/0.9)]"
-            >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              Fale com um especialista
-            </a>
+            <div className="reveal reveal-delay-3 mt-6 flex justify-center">
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.65_0.14_220/0.6)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_60px_-10px_oklch(0.65_0.14_220/0.9)]"
+              >
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                Fale com um especialista
+              </a>
+            </div>
           </div>
         </div>
 
