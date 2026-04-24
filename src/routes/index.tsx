@@ -530,7 +530,7 @@ function Landing() {
                   <span className="text-gradient-cyan">O Sobrapi 2026</span>
                   <span className="text-gradient mt-2 block">marca este momento</span>
                 </h2>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
                   O T Connect será apresentado ao público especializado durante o
                   <span className="font-semibold text-foreground"> 31º Congresso Brasileiro de Periodontia e Implantodontia.</span>
                 </p>
