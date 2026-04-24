@@ -487,7 +487,7 @@ function Landing() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <p className="text-sm leading-relaxed text-foreground/90">{r}</p>
+                <p className="text-base leading-relaxed text-foreground/90 md:text-lg">{r}</p>
               </div>
             ))}
           </div>
