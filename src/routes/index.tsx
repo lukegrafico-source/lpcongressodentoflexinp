@@ -446,7 +446,7 @@ function Landing() {
                   </div>
                   <h3 className="text-xl font-bold leading-tight text-gradient">{item.t}</h3>
                   <div className="my-5 h-px w-10 bg-primary/40 transition-all group-hover:w-20" />
-                  <p className="text-sm leading-relaxed text-muted-foreground">{item.d}</p>
+                  <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{item.d}</p>
                 </div>
               </div>
             ))}
