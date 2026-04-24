@@ -608,7 +608,7 @@ function Landing() {
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <WhatsAppIcon className="h-5 w-5" />
-              +55 (11) 99589-8239
+              Entre em contato
             </a>
           </div>
 
