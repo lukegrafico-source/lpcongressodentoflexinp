@@ -462,7 +462,7 @@ function Landing() {
             <h2 className="text-4xl font-bold leading-tight md:text-6xl">
               <span className="text-gradient">Desempenho comprovado</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               O T Connect foi avaliado por meio de análises por elementos finitos (FEA),
               simulando diferentes condições clínicas e cargas mastigatórias.
             </p>
