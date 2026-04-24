@@ -292,13 +292,6 @@ function Landing() {
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
                 Fale com um especialista
               </a>
-              <a
-                href="tel:+5511995898239"
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-4 text-base font-medium backdrop-blur-md transition-all hover:border-primary/50 hover:bg-primary/10"
-              >
-                <WhatsAppIcon className="h-4 w-4 text-primary" />
-                +55 (11) 99589-8239
-              </a>
             </div>
           </div>
 
@@ -615,7 +608,7 @@ function Landing() {
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <WhatsAppIcon className="h-5 w-5" />
-              +55 (11) 99589-8239
+              Entre em contato
             </a>
           </div>
 
