@@ -600,7 +600,7 @@ function Landing() {
             <span className="text-gradient-cyan mt-3 block">ao próximo nível</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-2xl">
             Fale agora com um especialista
             <br className="hidden sm:block" />
             e descubra como integrar o T Connect à sua prática
