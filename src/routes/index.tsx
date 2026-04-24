@@ -282,7 +282,7 @@ function Landing() {
               A nova era da implantodontia
             </p>
 
-            <div className="reveal reveal-delay-3 mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="reveal reveal-delay-3 mt-8 hidden flex-col gap-4 sm:flex-row sm:items-center lg:flex">
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
@@ -316,6 +316,18 @@ function Landing() {
                 className="float-slow relative z-10 h-full w-full object-contain drop-shadow-[0_20px_60px_oklch(0.65_0.14_220/0.5)]"
               />
             </div>
+          </div>
+
+          <div className="reveal reveal-delay-3 mt-8 flex justify-center lg:hidden">
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.65_0.14_220/0.6)] transition-all hover:scale-[1.02]"
+            >
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              Fale com um especialista
+            </a>
           </div>
         </div>
 
