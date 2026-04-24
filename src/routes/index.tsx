@@ -267,7 +267,7 @@ function Landing() {
       {/* HERO */}
       <section className="relative px-6 pt-6 pb-16 lg:px-10 lg:pt-12 lg:pb-20">
         <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-6">
+          <div className="order-1 lg:col-span-6">
             <div className="reveal mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-glow" />
               Pré-lançamento exclusivo
@@ -281,28 +281,9 @@ function Landing() {
             <p className="reveal reveal-delay-2 mt-6 max-w-xl text-xl font-light text-muted-foreground md:text-2xl">
               A nova era da implantodontia
             </p>
-
-            <div className="reveal reveal-delay-3 mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.65_0.14_220/0.6)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_60px_-10px_oklch(0.65_0.14_220/0.9)]"
-              >
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-                Fale com um especialista
-              </a>
-              <a
-                href="tel:+5511995898239"
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-4 text-base font-medium backdrop-blur-md transition-all hover:border-primary/50 hover:bg-primary/10"
-              >
-                <WhatsAppIcon className="h-4 w-4 text-primary" />
-                +55 (11) 99589-8239
-              </a>
-            </div>
           </div>
 
-          <div className="reveal reveal-delay-2 relative lg:col-span-6">
+          <div className="reveal reveal-delay-2 relative order-2 lg:order-3 lg:col-span-6 lg:row-span-2">
             <div className="relative mx-auto aspect-square max-w-[560px]">
               <div
                 className="absolute inset-0 rounded-full blur-3xl"
@@ -322,6 +303,27 @@ function Landing() {
                 alt="T CONNECT Abutment Triplo"
                 className="float-slow relative z-10 h-full w-full object-contain drop-shadow-[0_20px_60px_oklch(0.65_0.14_220/0.5)]"
               />
+            </div>
+          </div>
+
+          <div className="reveal reveal-delay-3 order-3 lg:order-2 lg:col-span-6">
+            <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center lg:mt-8">
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-primary to-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.65_0.14_220/0.6)] transition-all hover:scale-[1.02] hover:shadow-[0_15px_60px_-10px_oklch(0.65_0.14_220/0.9)]"
+              >
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                Fale com um especialista
+              </a>
+              <a
+                href="tel:+5511995898239"
+                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-6 py-4 text-base font-medium backdrop-blur-md transition-all hover:border-primary/50 hover:bg-primary/10"
+              >
+                <WhatsAppIcon className="h-4 w-4 text-primary" />
+                +55 (11) 99589-8239
+              </a>
             </div>
           </div>
         </div>
