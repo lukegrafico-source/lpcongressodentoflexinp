@@ -282,7 +282,7 @@ function Landing() {
               A nova era da implantodontia
             </p>
 
-            <div className="reveal reveal-delay-3 mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="reveal reveal-delay-3 mt-8 hidden flex-col gap-4 sm:flex-row sm:items-center lg:flex">
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
